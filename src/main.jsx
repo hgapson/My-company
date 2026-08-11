@@ -41,7 +41,14 @@ function App() {
       <section className="process section" id="process"><p className="eyebrow">A straightforward process</p><h2>From “we need help” to <span>“it’s working.”</span></h2><div className="process-grid">{process.map(([title, copy], index) => <article key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></section>
       <section className="contact" id="contact"><div className="contact-copy"><p className="eyebrow">Let’s solve it together</p><h2>Ready for technology that works better for you?</h2><p>Tell us a little about what you need. We’ll get back to you with a clear next step.</p><div className="contact-detail"><span>Based in Hamilton, New Zealand</span><span>Available remotely across New Zealand</span></div></div><form onSubmit={submit}><label>Your name<input required name="name" type="text" placeholder="Name" /></label><label>Email address<input required name="email" type="email" placeholder="you@example.com" /></label><label>What can we help with?<select name="service"><option>Website development</option><option>IT support</option><option>Wi-Fi, networking or email</option><option>Microsoft 365 / Google Workspace</option><option>Something else</option></select></label><label>Tell us a little more<textarea required name="message" rows="3" placeholder="What would you like to improve or fix?" /></label><button className="button primary" type="submit">Send enquiry <span>→</span></button><p className="form-note" role="status">{sent && 'Thanks — your enquiry is ready to send. Connect this form to an email or form service when you launch.'}</p></form></section>
     </main>
-    <footer><Brand /><p>Practical technology. Personal service.</p><span>© {new Date().getFullYear()} Gapson Tech Solutions</span></footer>
+    <footer className="site-footer">
+      <div className="footer-brand"><Brand /><p>Practical technology. Personal service.</p></div>
+      <div className="footer-links" aria-label="Footer navigation">
+        <div><strong>Explore</strong><a href="#services">Services</a><a href="#why-us">Why us</a><a href="#process">How it works</a></div>
+        <div><strong>Get in touch</strong><a href="#contact">Start a conversation</a><a href="#contact">Request IT support</a><a href="#contact">Website enquiries</a></div>
+      </div>
+      <div className="footer-bottom"><span>© {new Date().getFullYear()} Gapson Tech Solutions</span><a href="#top">Back to top ↑</a></div>
+    </footer>
   </>
 }
 
