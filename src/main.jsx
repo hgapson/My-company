@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './styles.css'
 import Footer from './components/Footer'
@@ -15,6 +15,25 @@ function App() {
   const [sent, setSent] = useState(false)
   const closeMenu = () => setMenuOpen(false)
   const submit = (event) => { event.preventDefault(); setSent(true); event.currentTarget.reset() }
+
+  useEffect(() => {
+    const sections = document.querySelectorAll('main > section')
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible')
+          observer.unobserve(entry.target)
+        }
+      })
+    }, { threshold: 0.12 })
+
+    sections.forEach((section) => {
+      section.classList.add('reveal')
+      observer.observe(section)
+    })
+
+    return () => observer.disconnect()
+  }, [])
 
   return <>
     <Header menuOpen={menuOpen} onMenuToggle={() => setMenuOpen(!menuOpen)} onNavigate={closeMenu} />
